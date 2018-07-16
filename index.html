@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
-<html lang="en">
+<html lang="en" style="    background: white;
+    padding: 0;
+    margin: 0;">
 <!--<![endif]-->
 <head>
 
@@ -59,6 +61,43 @@
 <!-- Support media queries for IE8 -->
 <script src="js/respond.min.js"></script>
 
+<script type="text/javascript">
+function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+      if (document.cancelFullScreen) {
+           document.cancelFullScreen();
+       } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+       } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+       } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+   }
+}</script>
+<style>
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+footer{
+    padding: 132px 0 0 0;
+}
+  
+}
+
+</style>
+
+
 </head>
 
 <body>
@@ -66,8 +105,14 @@
 <header>
          <div class="container">
             <div class="row">
-          <div class="col-md-12 col-xs-12" >
+          <div class="col-sm-10" >
            <p style="text-align:Justify;color:white;font-size: 12px;font-weight: bold;padding-bottom: -5px;padding-top: 10px;">A STUDY ON COMPLIANCE TO IRON AND FOLIC ACID SUPPLEMENTS AMONG ANTENATAL MOTHERS OF THE RURAL FIELD PRACTICE AREA OF A MEDICAL COLLEGE IN CENTRAL KARNATAKA.</p></div>
+           <div class="col-sm-2" style="padding-top: 12px;" >
+           <input type="button" value="fullscreen"  onclick="toggleFullScreen(document.body)"> 
+         </div>
+
+          
+           
             
          </div><!-- End row -->
          </div><!-- End container -->
@@ -91,14 +136,14 @@
 				  <h3 class="col-md-6">1) Name of the participant</h3>
 					<div class="col-md-6">
 						<ul class="data-list">
-							<li><input type="text" name="name" id="name"  class="required form-control"></li>
+							<li><input type="text" name="name" id="name"  class="required form-control" minlength="3" maxlength="15"></li>
 							<input id="website" name="website" type="text" value="" >
 						</ul>
 					</div>
 				 <h3 class="col-md-6"> Age</h3>
 					<div class="col-md-6">
 						<ul class="data-list">
-							<li><input type="text" name="age" id="age"  class="required form-control" ></li>
+							<li><input type="number" min="1" max="200" name="age" id="age"  class="required form-control" ></li>
 							<input id="website" name="website" type="text" value="" >
 						</ul>
 					</div>
@@ -112,14 +157,14 @@
                 </div><!-- end row -->
            </div><!-- end step-->
 
-            <div class="step row">
+         <div class="step row">
 				<div class="row">
                     <h3 class="col-md-12">2) Religion</h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="gravida">
+                            <select class="form-control required" name="religion" id="religion">
                               <option value="" selected>Select</option>
                               <option value="Hindu">Hindu</option>
                               <option value="Muslim">Muslim</option>
@@ -141,7 +186,7 @@
                     <h3 class="col-md-3">Occupation</h3>
                         <div class="col-md-3">
                             <ul class="data-list">
-                                <li><input type="text" name="Occupation" id="Occupation"  class="required form-control" placeholder="Occupation"></li>
+                                <li><input type="text" name="Occupation" id="Occupation"  class="required form-control" ></li>
                             </ul>
                         </div>
                 </div><!--row-->
@@ -150,17 +195,17 @@
             </div><!-- end step -->
 
             <div class="step row">
-				<div class="row">
+				      <div class="row">
                 	<h3 class="col-md-12">4) Gravida</h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="gravida">
+                            <select class="form-control required" name="gravida" id="gravida">
                               <option value="" selected>Select</option>
                               <option value="Primi">Primi Gravida</option>
                               <option value="Second">Second Gravida</option>
-                              <option value="third">third or more </option>
+                              <option value="third">Third or more </option>
                             </select>
                            </div>
                          </li>
@@ -173,7 +218,7 @@
                             <ul class="data-list">
                               <li>
                                 <div class="styled-select">
-                                 <select class="form-control required" name="trimester">
+                                 <select class="form-control required" name="trimester" id="trimester">
                                   <option value="" selected>Select</option>
                                   <option value="second">Second</option>
                                   <option value="third">Third</option>
@@ -187,7 +232,7 @@
                             <ul class="data-list">
                                 <li>
                                 <div class="styled-select">
-                                 <select class="form-control required" name="spacing">
+                                 <select class="form-control required" name="spacing" id="spacing">
                                   <option value="" selected>Select</option>
                                   <option value="second"><3years</option>
                                   <option value="third">>3years</option>
@@ -207,7 +252,7 @@
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="family">
+                            <select class="form-control required" name="family" id="family">
                               <option value="" selected>Select</option>
                               <option value="Nuclear">Nuclear</option>
                               <option value="Joint">Joint</option>
@@ -219,7 +264,7 @@
                     </div>
                 </div><!--row-->
                 <div class="row">
-					<h3 class="col-md-3">7) Family Income </h3>
+					         <h3 class="col-md-3">7) Family Income </h3>
                         <div class="col-md-3">
                             <ul class="data-list">
                                 <li><input type="text" name="income" id="income"  class="required form-control"></li>
@@ -242,7 +287,7 @@
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="belong">
+                            <select class="form-control required" name="belong" id="belong">
                               <option value="" selected>Select</option>
                               <option value="APL ">APL </option>
                               <option value="BPL ">BPL </option>
@@ -258,7 +303,7 @@
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="diet" id="diet">
                               <option value="" selected>Select</option>
                               <option value="vegetarian">Vegetarian </option>
                               <option value="non vegetarian ">Non-vegetarian</option>
@@ -268,115 +313,96 @@
                        </ul>
                     </div>
                 </div><!--row-->
-            
-  
-            </div><!-- end step -->
-            <div class="step row">
-                <div class="row">
+
+                   <div class="row">
                     <h3 class="col-md-12">10) If non veg, how often do they consume?  </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="belong">
+                            <select class="form-control required" name="nonveg" id="nonveg">
                               <option value="" selected>Select</option>
-                              <option value="APL ">Once/week </option>
-                              <option value="BPL ">Once/month </option>
-                              <option value="APL ">Once/fortnight </option>
-                              <option value="BPL ">Once/week</option>
+                              <option value="one">Once/week </option>
+                              <option value="two">Once/month </option>
+                              <option value="three">Once/fortnight </option>
+                              <option value="four">Once/week</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
+             </div><!-- end step -->
+            <div class="step row">
+             
                 <div class="row">
                     <h3 class="col-md-12">11) How often are fruits consumed? </h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="fruit" id="fruit">
                               <option value="" selected>Select</option>
-                              <option value="vegetarian">Once/week </option>
-                              <option value="non vegetarian">Once/month</option>
-                              <option value="vegetarian">Once/fortnight </option>
-                              <option value="non vegetarian">Once/week</option>
+                              <option value="week">Once/week </option>
+                              <option value="month">Once/month</option>
+                              <option value="fortnight">Once/fortnight </option>
+                              <option value="other">Once/week</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
-            </div><!-- end step -->
 
-            <div class="step row">
-                <div class="row">
-                     <h3 class="col-md-6">12) Any food taboos followed</h3>
-					<div class="col-md-6">
-						<ul class="data-list">
-							<li><input type="text" name="name" id="name"  class="required form-control"></li>
-							<input id="website" name="website" type="text" value="" >
-						</ul>
-					</div>
-                </div><!--row-->
-                <div class="row">
-                     <h3 class="col-md-6">13) Distance from the PHC/AW</h3>
-					<div class="col-md-6">
-						<ul class="data-list">
-							<li><input type="text" name="name" id="name"  class="required form-control"></li>
-							<input id="website" name="website" type="text" value="" >
-						</ul>
-					</div>
-                </div><!--row-->
-          
+              <div class="row">
+                <h3 class="col-md-6">12) Any food taboos followed</h3>
+                  <div class="col-md-6">
+                    <ul class="data-list">
+                      <li><input type="text" name="food" id="food"  class="required form-control"></li>
+                      <input id="website" name="website" type="text" value="" > 
+                    </ul>
+                  </div> 
+              </div><!--row-->
 
-                <div class="row">
-                     <h3 class="col-md-6">14) Any underlying maternal illness</h3>
-					<div class="col-md-6">
-						<ul class="data-list">
-							<li><input type="text" name="name" id="name"  class="required form-control"></li>
-							<input id="website" name="website" type="text" value="" >
-						</ul>
-					</div>
-                </div><!--row-->
+              <div class="row">
+                <h3 class="col-md-6">13) Distance from the PHC/AW</h3>
+                  <div class="col-md-6">
+                    <ul class="data-list">
+                      <li><input type="text" name="distance" id="distance"  class="required form-control"></li>
+                      <input id="website" name="website" type="text" value="" >
+                    </ul>
+                  </div>
+              </div><!--row-->
+          </div><!-- end step -->
 
-             </div><!-- end step -->
+          <div class="step row">
+            <div class="row">
+              <h3 class="col-md-6">14) Any underlying maternal illness</h3>
+					     <div class="col-md-6">
+						      <ul class="data-list">
+							       <li><input type="text" name="illness" id="illness"  class="required form-control"></li>
+							      <input id="website" name="website" type="text" value="" >
+						     </ul>
+					      </div>
+            </div><!--row--->
 
-            <div class="step row">
-                <div class="row">
-                     <h3 class="col-md-6">15) Give 3 examples for iron rich foods</h3>
-					<div class="col-md-6">
-						<ul class="data-list">
-							<li><input type="text" name="name" id="name"  class="required form-control"></li>
-							<input id="website" name="website" type="text" value="" >
-						</ul>
-					</div>
-                </div><!--row-->
+            <div class="row">
+              <h3 class="col-md-6">15) Give 3 examples for iron rich foods</h3>
+                <div class="col-md-6">
+                  <ul class="data-list">
+                    <li><input type="text" name="iron" id="iron"  class="required form-control"></li>
+                    <input id="website" name="website" type="text" value="" >
+                  </ul>
+                </div>
+            </div><!--row-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="row">
+            <div class="row">
                     <h3 class="col-md-12">16) Time of Registration </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="reg">
+                            <select class="form-control required" name="reg" id="reg">
                               <option value="" selected>Select</option>
                               <option value="late ">Late registration </option>
                               <option value="early ">Early registration  </option>
@@ -387,19 +413,19 @@
                     </div>
                 </div><!--row-->
 
-            </div><!-- end step -->
+             </div><!-- end step -->
 
-              <div class="step row">
-                 <div class="row">
+          <div class="step row">
+              <div class="row">
                     <h3 class="col-md-12">17) Place of Registration </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="place" id="place">
                               <option value="" selected>Select</option>
-                              <option value="vegetarian">Government Hospital</option>
-                              <option value="non vegetarian">Private Hospital</option>
+                              <option value="government">Government Hospital</option>
+                              <option value="private">Private Hospital</option>
                             </select>
                            </div>
                          </li>
@@ -408,32 +434,30 @@
                 </div><!--row-->
                 <div class="row">
                     <h3 class="col-md-12">18) No of ANC visits </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="anc" id="anc">
                               <option value="" selected>Select</option>
-                              <option value="visit"><1Visits</option>
-                              <option value="visit">1-3 Visits</option>
-                              <option value="visit">4 Visits</option>
-                              <option value="visit">>4 Visits</option>
+                              <option value="1visit"><1Visits</option>
+                              <option value="2visit">1-3 Visits</option>
+                              <option value="3visit">4 Visits</option>
+                              <option value="4visit">>4 Visits</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
-            </div><!-- end step -->
 
-           <div class="step row">
                 <div class="row">
                     <h3 class="col-md-12">19) Knowledge of Hb status </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="hb" id="hb">
                               <option value="" selected>Select</option>
                               <option value="know">know</option>
                               <option value="do not know ">do not know </option>
@@ -443,38 +467,40 @@
                        </ul>
                     </div>
                 </div><!--row-->
+
+            </div><!-- end step -->
+
+           <div class="step row">
+                
                   <div class="row">
                     <h3 class="col-md-12">20) When did you start IFA supplementation </h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="reg">
+                            <select class="form-control required" name="ifa" id="ifa">
                               <option value="" selected>Select</option>
-                              <option value="late ">1st trimester</option>
-                              <option value="early">2nd trimester</option>
-                              <option value="early">3rd trimester</option>
+                              <option value="1trimester">1st trimester</option>
+                              <option value="2trimester">2nd trimester</option>
+                              <option value="3trimester">3rd trimester</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
-            </div><!-- end step -->
-            
-             <div class="step row">
-              
-                 <div class="row">
+
+              <div class="row">
                     <h3 class="col-md-12">21) Hemoglobin category </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="category" id="category">
                               <option value="" selected>Select</option>
-                              <option value="vegetarian">No anemia(>11 gm/dl)</option>
-                              <option value="non vegetarian">Mild anemia (10 -11 gm/dl)</option>
-                              <option value="non vegetarian">c.	Moderate anemia()</option>
+                              <option value="noanemia">No anemia(>11 gm/dl)</option>
+                              <option value="mildanemia">Mild anemia (10 -11 gm/dl)</option>
+                              <option value="moderateanemia">c. Moderate anemia()</option>
                             </select>
                            </div>
                          </li>
@@ -483,15 +509,15 @@
                 </div><!--row-->
                 <div class="row">
                     <h3 class="col-md-12">22) Consumption of IFA tablets </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="tablets" id="tablets">
                               <option value="" selected>Select</option>
-                              <option value="visit">Not taken</option>
-                              <option value="visit">Taken but not as per the advice</option>
-                              <option value="visit">Taken as per the advice</option>
+                              <option value="tablet1">Not taken</option>
+                              <option value="tablet2">Taken but not as per the advice</option>
+                              <option value="tablet3">Taken as per the advice</option>
                             </select>
                            </div>
                          </li>
@@ -500,20 +526,19 @@
                 </div><!--row-->
             </div><!-- end step -->
 
-
-             <div class="step row">
+            <div class="step row">
                 <div class="row">
                     <h3 class="col-md-12">23) Time of IFA tablet intake </h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="test" id="test">
                               <option value="" selected>Select</option>
-                              <option value="know">Morning </option>
-                              <option value="do not know ">Afternoon </option>
-                              <option value="know">Night</option>
-                              <option value="do not know ">Both (morning and night) </option>
+                              <option value="morning">Morning </option>
+                              <option value="afternoon">Afternoon </option>
+                              <option value="night">Night</option>
+                              <option value="both">Both (morning and night) </option>
                             </select>
                            </div>
                          </li>
@@ -527,10 +552,28 @@
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="reg">
+                            <select class="form-control required" name="pattern" id="pattern">
                               <option value="" selected>Select</option>
-                              <option value="late ">Before food</option>
-                              <option value="early">Immediately after food</option>
+                              <option value="before ">Before food</option>
+                              <option value="after">Immediately after food</option>
+                            </select>
+                           </div>
+                         </li>
+                       </ul>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <h3 class="col-md-12">25) Foods consumed along with IFA tablets  </h3>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
+                           <div class="styled-select">
+                            <select class="form-control required" name="consume" id="consume">
+                              <option value="" selected>Select</option>
+                              <option value="milk">Milk</option>
+                              <option value="fruits">Fruits</option>
+                              <option value="tea">Tea/Coffee</option>
                             </select>
                            </div>
                          </li>
@@ -541,49 +584,31 @@
 
                 <div class="step row">
                 
-                 <div class="row">
-                    <h3 class="col-md-12">25) Foods consumed along with IFA tablets  </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
-                           <div class="styled-select">
-                            <select class="form-control required" name="diet">
-                              <option value="" selected>Select</option>
-                              <option value="vegetarian">Milk</option>
-                              <option value="non vegetarian">Fruits</option>
-                              <option value="non vegetarian">Tea/Coffee</option>
-                            </select>
-                           </div>
-                         </li>
-                       </ul>
-                    </div>
-                </div><!--row-->
+                 
                 <div class="row">
                     <h3 class="col-md-12">26) Is calcium tablet consumed along with IFA tablets  </h3>
                 	    <div class="col-md-12">
                 	     <ul class="data-list">
                 	      <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="calcium" id="calcium">
                               <option value="" selected>Select</option>
-                              <option value="visit">Yes</option>
-                              <option value="visit">No</option>
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
-            </div><!-- end step -->
 
-             <div class="step row">
-                <div class="row">
+              <div class="row">
                     <h3 class="col-md-12">27) Do they know the dose of iron pills </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="diet">
+                            <select class="form-control required" name="pills" id="pills">
                               <option value="" selected>Select</option>
                               <option value="know">know </option>
                               <option value="do not know">Do not know </option>
@@ -593,35 +618,45 @@
                        </ul>
                     </div>
                 </div><!--row-->
-            
+
+
                  <div class="row">
                     <h3 class="col-md-12">28) Causes of non-compliance  </h3>
-                	    <div class="col-md-12">
-                	     <ul class="data-list">
-                	      <li>
+                      <div class="col-md-12">
+                       <ul class="data-list">
+                        <li>
                            <div class="styled-select">
-                            <select class="form-control required" name="reg">
+                            <select class="form-control required" name="noncompliance">
                               <option value="" selected>Select</option>
-                              <option value="late ">Forgetfulness </option>
-                              <option value="early">Ignorance</option>
-                              <option value="late ">Big size</option>
-                              <option value="early">Palatability</option>
-                              <option value="late ">Frustration with daily dose </option>
-                              <option value="early">Cost</option>
-                              <option value="early">Side effect</option>
-                              <option value="early">Outmigration</option>
+                              <option value="select1 ">Forgetfulness </option>
+                              <option value="select2">Ignorance</option>
+                              <option value="select3 ">Big size</option>
+                              <option value="select4">Palatability</option>
+                              <option value="select5 ">Frustration with daily dose </option>
+                              <option value="select6">Cost</option>
+                              <option value="select7">Side effect</option>
+                              <option value="select8">Outmigration</option>
                             </select>
                            </div>
                          </li>
                        </ul>
                     </div>
                 </div><!--row-->
-            </div><!-- end step -->
+            </div><!-- end step -> -->
 
 			<div class="submit step" id="complete">
             <i class="icon-check"></i>
 						<h3>Survey complete! Thank you for you time.</h3>
 						<button type="submit" name="process" class="submit">Submit the survey</button>
+            <div class="row">
+                  <div class="col-sm-6">
+
+            <label>Attended Questions:</label>
+          </div>
+              <div class="col-sm-6">
+            <label>Remaining Question:</label>
+          </div>
+          </div>
 			</div><!-- end submit step -->
             
 		</div><!-- end middle-wizard -->
